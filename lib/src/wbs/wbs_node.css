@@ -1,0 +1,17 @@
+/*
+.example .tf-nc {
+}
+  
+.tf-custom .tf-nc:before,
+.tf-custom .tf-nc:after {
+}
+
+.tf-custom li li:before {
+}
+
+// Available utilities.
+tf-gap-sm: the space between nodes (small screen)
+tf-gap-lg: the space between nodes (large screen)
+tf-dashed-children: dashed connectors
+tf-dotted-children: dotted connectors
+*/

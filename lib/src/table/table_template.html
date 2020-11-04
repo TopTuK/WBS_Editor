@@ -1,0 +1,80 @@
+<h2>WBS Tree view</h2>
+
+<material-button (click)='addNodeClick' [disabled]='selectedNode == null'>
+    Add Node
+</material-button>
+
+<material-button (click)='editNodeClick' [disabled]='selectedNode == null'>
+    Edit Node
+</material-button>
+
+<material-button (click)='removeNodeClick' [disabled]='selectedNode == null'>
+    Remove Node
+</material-button>
+
+<tree-view [root-node]='rootNode' (select-node)='onSelectNode($event)'></tree-view>
+
+<modal [(visible)]='showErrorRootDialog'>
+    <material-dialog headered class="basic-dialog">
+        <div header>
+            <h1>Error</h1>
+        </div>
+
+        <p>
+            Error: can't remove root node
+        </p>
+
+        <div footer>
+            <material-button autoClass clear-size (trigger)='showErrorRootDialog = false'>
+                Close
+            </material-button>
+        </div>
+    </material-dialog>
+</modal>
+
+<modal [(visible)]='showNewNodeDialog'>
+    <material-dialog headered class="basic-dialog">
+        <div header>
+            <h1>Add new node</h1>
+            <h4>Parent: {{selectedNode?.title}}</h4>
+        </div>
+
+        <div>
+            <label for="nodeName">Node title:</label>
+            <input id="nodeName" value="Child node" #nodeTitle />
+        </div>
+
+        <div footer>
+            <material-button autoClass clear-size (click)='addNode(nodeTitle.value)'>
+                Add new
+            </material-button>
+
+            <material-button autoClass clear-size (trigger)='showNewNodeDialog = false'>
+                Close
+            </material-button>
+        </div>
+    </material-dialog>
+</modal>
+
+<modal [(visible)]='showEditNodeDialog'>
+    <material-dialog headered class="basic-dialog">
+        <div header>
+            <h1>Edit node</h1>
+        </div>
+
+        <div>
+            <label for="nodeTitle">Node title:</label>
+            <input id="nodeTitle" [value]='selectedNode?.title' #nodeeEdit />
+        </div>
+
+        <div footer>
+            <material-button autoClass clear-size (click)='editNode(nodeeEdit.value)'>
+                Edit node
+            </material-button>
+
+            <material-button autoClass clear-size (trigger)='showEditNodeDialog = false'>
+                Close
+            </material-button>
+        </div>
+    </material-dialog>
+</modal>

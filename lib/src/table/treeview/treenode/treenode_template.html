@@ -1,0 +1,28 @@
+<div class="node-container">
+    <div class="node-cell">
+        <material-icon [attr.size]='"medium"' [icon]='"account_tree"'></material-icon>
+    </div>
+
+    <div *ngIf='currentNode.isLeaf' class="node-cell">
+        <material-icon [attr.size]='"medium"' [icon]='"eco"'></material-icon>
+    </div>
+
+    <div *ngIf='!currentNode.isLeaf' class="node-cell node-expander">
+        <material-icon [attr.size]='"medium"' 
+            [icon]='currentNode.isExpanded ? "check_circle_outline" : "check_circle"'
+            (click)='expandNode(currentNode)'>
+        </material-icon>
+    </div>
+
+    <div class="node-cell node-selector"
+        [style.font-weight]='currentNode.isSelected ? "bold" : "normal"'
+        (click)='selectNode(currentNode)'>
+        {{currentNode.title}}
+    </div>
+</div>
+
+<div *ngIf='currentNode.isExpanded' class="child-node">
+    <div *ngFor='let childNode of nodeChildrens'>
+        <tree-node [node]='childNode'></tree-node>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.node-container {
+    display: table;
+    font-size: 16px;
+}
+
+.node-cell {
+    padding-left: 5px;
+    display: table-cell;
+}
+
+.node-expander {
+    cursor: pointer;
+}
+
+.node-selector {
+    cursor: grabbing;
+}
+
+.child-node {
+    margin-left: 10px;
+}
+
+.node-selected {
+    font-weight: bold;
+}
