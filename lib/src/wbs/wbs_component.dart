@@ -10,6 +10,7 @@ import 'package:wbs_editor/src/model/tree_model.dart';
   selector: 'wbs-tree',
   templateUrl: 'wbs_template.html',
   styleUrls: ['wbs_styles.css', 'wbs_node.css'],
+  encapsulation: ViewEncapsulation.None,
 )
 class WbsComponent implements OnInit {
   final TreeService _treeService;
