@@ -12,7 +12,9 @@ import 'package:wbs_editor/src/table/treeview/treeview_node.dart';
   directives: [coreDirectives,
               MaterialButtonComponent,
               TreeViewComponent,
-              AutoFocusDirective, MaterialDialogComponent, ModalComponent,],
+              AutoFocusDirective, MaterialDialogComponent, ModalComponent,
+              MaterialMultilineInputComponent,
+              ],
 )
 class TableComponent implements OnInit {
   final TreeService _treeService;
@@ -28,6 +30,7 @@ class TableComponent implements OnInit {
   bool showErrorRootDialog = false;
   bool showNewNodeDialog = false;
   bool showEditNodeDialog = false;
+  bool showLoadJsonDialog = false;
 
   @override
   void ngOnInit() {
@@ -66,5 +69,40 @@ class TableComponent implements OnInit {
     else {
       showErrorRootDialog = true;
     }
+  }
+
+  void loadJsonClick() {
+    showLoadJsonDialog = true;
+  }
+
+  void loadFromJsonTree(String json) {
+    /*
+    json = '''{
+      "title": "New Root node",
+      "childrens" : [
+        {
+          "title" : "Child node 1",
+          "childrens" : [
+            {
+              "title" : "Grand child 1"
+            },
+            {
+              "title" : "Grand child 2"
+            }
+          ]
+        },
+        {
+          "title" : "Child node 2",
+          "childrens" : []
+        }
+      ]
+    }
+    ''';
+    */
+
+    var node = _treeService.loadFromJsonTree(json);
+    rootNode.updateChilds();
+
+    showLoadJsonDialog = false;
   }
 }

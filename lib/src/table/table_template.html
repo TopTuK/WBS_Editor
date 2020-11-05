@@ -8,6 +8,10 @@
     Edit Node
 </material-button>
 
+<material-button (click)='loadJsonClick'>
+    Load Json Tree
+</material-button>
+
 <material-button (click)='removeNodeClick' [disabled]='selectedNode == null'>
     Remove Node
 </material-button>
@@ -73,6 +77,28 @@
             </material-button>
 
             <material-button autoClass clear-size (trigger)='showEditNodeDialog = false'>
+                Close
+            </material-button>
+        </div>
+    </material-dialog>
+</modal>
+
+<modal [(visible)]='showLoadJsonDialog'>
+    <material-dialog headered class="basic-dialog">
+        <div header>
+            <h1>Load tree from Json</h1>
+        </div>
+
+        <textarea rows="20" class="json-editor" #json>
+            { "title" : "New root", "childrens" : [] }
+        </textarea>
+
+        <div footer>
+            <material-button autoClass clear-size (click)='loadFromJsonTree(json.value)'>
+                Load
+            </material-button>
+
+            <material-button autoClass clear-size (trigger)='showLoadJsonDialog = false'>
                 Close
             </material-button>
         </div>

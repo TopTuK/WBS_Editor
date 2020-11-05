@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class TreeNode {
   String title;
   dynamic payload;
@@ -59,5 +61,36 @@ class TreeService {
 
   TreeNode findNodeByTitle(String title) {
     return _findNode(_rootNode, title);
+  }
+
+  void _loadNodeFromJson(TreeNode currentNode, Map childNodeMap) {
+    print(childNodeMap);
+    if(childNodeMap.containsKey('title')) {
+      var node = TreeNode(childNodeMap['title']);
+      addNode(currentNode, node);
+
+      if(childNodeMap.containsKey('childrens')) {
+        for (var childMap in childNodeMap['childrens']) {
+          _loadNodeFromJson(node, childMap);
+        }
+      }
+    }
+  }
+
+  TreeNode loadFromJsonTree(String jsonTree) {
+    Map treeMap = json.decode(jsonTree);
+    
+    if((treeMap != null) && (treeMap.containsKey('title'))) {
+      _rootNode.title = treeMap['title'];
+      _rootNode.childrens.clear();
+
+      if(treeMap.containsKey('childrens')) {
+        for (var childNodeMap in treeMap['childrens']) {
+          _loadNodeFromJson(_rootNode, childNodeMap);
+        }
+      }
+    }
+
+    return _rootNode;
   }
 }
