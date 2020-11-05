@@ -1,7 +1,3 @@
-# wbs_editor
+# Quite simple Web WBS Editor
 
-A web app that uses [AngularDart](https://angulardart.dev) and
-[AngularDart Components](https://angulardart.dev/components).
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+A work-breakdown structure (WBS in project management and systems engineering, is a deliverable-oriented breakdown of a project into smaller components. A work breakdown structure is a key project deliverable that organizes the team's work into manageable sections.
